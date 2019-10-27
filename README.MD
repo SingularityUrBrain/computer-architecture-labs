@@ -1,6 +1,6 @@
 # Computer architecture
 ### sem3
-- [labs](https://github.com/SingularityUrBrain/computer-architecture-labs/tree/master/sem3) - asm-projects
+- [labs](https://github.com/SingularityUrBrain/Asm-projects) - asm-projects
 ### sem4
 - [lab1](https://github.com/SingularityUrBrain/computer-architecture-labs/tree/master/sem4/lab1) - ALU for sum, subtraction (quartus)
 - [lab2](https://github.com/SingularityUrBrain/computer-architecture-labs/tree/master/sem4/lab2) - Booth algorithm (quartus)
