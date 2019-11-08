@@ -48,7 +48,8 @@ void test_queue(Queue<T> &q, int producer_num, int consumer_num)
         if (cons_thr[i].joinable())
             cons_thr[i].join();
     //check sum
-    assert(sum == producer_num * TASK_NUM);
+    if (sum != producer_num * TASK_NUM)
+        throw;
 }
 
 template <typename T>
@@ -70,7 +71,7 @@ void time_queue(Queue<T> &q)
 
 int main()
 {
-    int task = 3;
+    int task = 2;
 
     const int queue_size[3]{1, 4, 16};
     switch (task)
@@ -94,7 +95,7 @@ int main()
     break;
     case 3:
     {
-        for (int qz : queue_size)   //qz = 1 takes a vey long time
+        for (int qz : queue_size) //qz = 1 takes a vey long time
         {
             std::cout << "queue size: " << qz << '\n'
                       << '\n';

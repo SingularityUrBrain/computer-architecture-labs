@@ -24,7 +24,7 @@ public:
             size_t curr_tail = tail.load();
             if (curr_tail == head + size) // overf;ow check
                 continue;
-            if (tail.compare_exchange_strong(curr_tail, curr_tail + 1))
+            if (tail.compare_exchange_strong(curr_tail, tail + 1))
             {
                 q[curr_tail % size] = val;
                 return;
@@ -44,7 +44,7 @@ public:
                 if (curr_head == tail)
                     return false;
             }
-            if (head.compare_exchange_strong(curr_head, curr_head + 1))
+            if (head.compare_exchange_strong(curr_head, head + 1))
             {
                 val = q[curr_head % size];
                 return true;

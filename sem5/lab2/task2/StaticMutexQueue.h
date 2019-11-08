@@ -17,7 +17,7 @@ class StaticMutexQueue : public Queue<T>
 public:
     StaticMutexQueue(size_t size) : size(size), current_size(0), head_ind(0), tail_ind(0)
     {
-        q = new T[this->size]{T()}; //T()
+        q = new T[size]{T()};
     }
     ~StaticMutexQueue()
     {
