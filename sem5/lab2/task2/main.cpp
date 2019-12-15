@@ -24,8 +24,7 @@ void consumer(Queue<T> &q, std::atomic<T> &sum, int producer_num, int consumer_n
     T val;
     for (int i = 0; i < TASK_NUM * producer_num / consumer_num; i++)
     {
-        while (!q.pop(val))
-            ;
+        while (!q.pop(val));
         sum += val;
     }
 }
@@ -71,7 +70,7 @@ void time_queue(Queue<T> &q)
 
 int main()
 {
-    int task = 2;
+    int task = 3;
 
     const int queue_size[3]{1, 4, 16};
     switch (task)
@@ -95,9 +94,9 @@ int main()
     break;
     case 3:
     {
-        for (int qz : queue_size) //qz = 1 takes a vey long time
+        for (int qz : queue_size) // if queue_size is 1 it'll take a vey long time
         {
-            std::cout << "queue size: " << qz << '\n'
+            std::cout << "\nqueue size: " << qz << '\n'
                       << '\n';
             StaticAtomicQueue<int> q(qz);
             time_queue<int>(q);

@@ -1,2 +1,5 @@
 *.vscode
 .gitmodules
+.fuse_hidden*
+sem5/lab2/task1
+sem5/lab2/task2/main
