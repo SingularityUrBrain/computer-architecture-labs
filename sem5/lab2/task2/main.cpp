@@ -24,7 +24,7 @@ void consumer(Queue<T> &q, std::atomic<T> &sum, int producer_num, int consumer_n
     T val;
     for (int i = 0; i < TASK_NUM * producer_num / consumer_num; i++)
     {
-        while (!q.pop(val));
+        while (!q.pop(val)) {}
         sum += val;
     }
 }

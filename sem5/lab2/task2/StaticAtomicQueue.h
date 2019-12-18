@@ -26,17 +26,12 @@ public:
             // check overflow
             if (curr_tail == head + size) continue;
             T x = q[curr_tail % size];
-            if (curr_tail != tail) continue;
-            bool succ = false;
-            if(isbusy_push.compare_exchange_strong(succ, true))
-                if(q[curr_tail % size] == x && curr_tail == tail)
-                {
-                    q[curr_tail % size] = val;
-                    ++tail;
-                    isbusy_push = false;
-                    return;
-                }
-            isbusy_push = false;
+            if (curr_tail != tail || x!=0) continue;
+            if(tail.compare_exchange_strong(curr_tail, curr_tail + 1))
+            {
+                q[curr_tail % size] = val;
+                return;
+            }
         }
     }
 
@@ -54,17 +49,13 @@ public:
                     return false;
             }
             T x = q[curr_head % size];
-            if (curr_head != head) continue;
-            bool succ = false;
-            if(isbusy_pop.compare_exchange_strong(succ, true))
-                if (q[curr_head % size] == x && curr_head == head)
-                {
-                    val = x;
-                    ++head;
-                    isbusy_pop = false;
-                    return true;
-                }
-            isbusy_pop = false;
+            if (curr_head != head || x == 0) continue;
+            if (head.compare_exchange_strong(curr_head, curr_head+1))
+            {
+                val = x;
+                q[curr_head % size] = 0;
+                return true;
+            }
         }
     }
 };
